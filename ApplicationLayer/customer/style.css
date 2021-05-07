@@ -1,0 +1,67 @@
+.navbar{
+    position: fixed;
+}
+.sidebar{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #005faf;
+}
+
+.sidebar ul li a{
+    display: block;
+    padding: 12px 25px;
+    border-bottom: 1px solid #0e94d4;
+    color: #0e94d4;
+    transition: all 0.2s ease;
+}
+
+.sidebar ul li a .text{
+    margin-left: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sidebar ul li a:hover{
+    background: #0e94d4;
+    color: #fff;
+}
+
+.click_collapse .sidebar{
+    transition: all 0.2s ease;
+}
+
+
+img{
+    max-width: 100%;
+    height: auto;
+    background: lightblue;
+    background: radial-gradient(white 30%, lightblue 70%);
+}
+
+.fa-star,
+.fa-star-half{
+    color: yellowgreen;
+    padding: 3% 0;
+}
+
+#cart_count{
+    text-align: center;
+    padding: 0 0.9rem 0.1rem 0.9rem;
+    border-radius: 3rem;
+}
+
+.shopping-cart{
+    padding: 3% 0;
+}
+
+.cart-items + .cart-items{
+    padding: 2% 0;
+}
+
+.price-details h6{
+    padding: 3% 2%;
+}
