@@ -61,7 +61,7 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/
     <div class="aligncenter">
         <img src="green-tick-icon.png" alt="Tick Icon" width="200" height="200" >
             <h1>Your Order Has Been Made!</h1>
-            <h2>Order ID: XX</h2>
+            <h2>Order ID: ABC</h2>
             <p>You can track your order using the Order ID above at customer homepage</p>
     </div>
     <br><br><br><br>
