@@ -55,18 +55,16 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/
     <!-- Header -->
     <div class="header">
         <p>Runner To You</p>
-        <h2>Order Success</h2>
+        <h2>Payment Failed</h2>
     </div>
     <br><br>
     <div class="aligncenter">
         <img src="green-tick-icon.png" alt="Tick Icon" width="200" height="200" >
-            <h1>Your Order Has Been Made!</h1>
-            <h2>Order ID: XX</h2>
-            <p>You can track your order using the Order ID above at customer homepage</p>
+            <h1>Payment for Order ID XX could not be proceed.</h1>
     </div>
     <br><br><br><br>
-    <p style="text-align: center"><input class="confirmButton" type="button" onclick="location.href='../home/CustomerHomePage.php'" value="Return To Homepage"></p>
+    <p style="text-align: center"><input class="tryAgain" type="button" onclick="location.href='../customer/CustomerPayment.php'" value="Try Again"></p>
     <br><br> 
-    <h3 style="text-align: center; color: #FFC300">THANK YOU FOR USING RUNNER TO YOU</h3>
+    
         </body>
 </html>
