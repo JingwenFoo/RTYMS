@@ -98,10 +98,15 @@ if(isset($_POST['find'])){
         foreach($finds as $row){
 
         ?>
+		
+		
     <h2 style="text-align:center">Your Order Status</h2>
     <p style="text-align:center"><input style="font-size: 30px;" type="text" value="<?=$row['orderID']?>" readonly placeholder="Order ID" size="1px">
-    <input style="font-size: 30px;" type="text" value="<?=$row['orderStatus']?>" readonly placeholder="Order Status">  </p>
+    <input style="font-size: 30px;" type="text" value="<?=$row['orderStatus']?>" readonly placeholder="Order Status"> 
+    <input style="font-size: 30px;" type="text" value="<?=$row['orderTime']?>" readonly placeholder="Order Status">
+    <input style="font-size: 30px;" type="text" value="<?=$row['itemType']?>" readonly placeholder="Order Status">	</p>
     <?php } } ?>
+
     </div>
     
 
