@@ -25,7 +25,8 @@ if (isset($_POST['remove'])){
   }
 }
 
-
+if(isset($_SESSION['total']))
+    $_SESSION['total'] = $total;
 ?>
 
 <!doctype html>
