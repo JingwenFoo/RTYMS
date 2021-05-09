@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/registrationController.php';
 
-
+//hai
 
 $medSP = new registerController();
 $data = $medSP->viewMedSP();
