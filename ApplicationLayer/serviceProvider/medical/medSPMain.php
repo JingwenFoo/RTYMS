@@ -7,7 +7,7 @@ $data = $item->viewAll();
 $name = new registerController();
 $datas = $name->viewMedSP();
 
-
+//hello
 if(isset($_POST['delete'])){
     $item->deleteItem();
 }
