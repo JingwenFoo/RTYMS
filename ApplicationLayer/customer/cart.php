@@ -4,6 +4,7 @@ session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/itemModel.php';
 require_once ('component.php');
+require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/orderController.php';
 
 $item = new itemModel();
 $data = $item->viewAll();
@@ -25,6 +26,11 @@ if (isset($_POST['remove'])){
   }
 }
 
+$order = new orderController();
+if(isset($_POST['checkout'])){
+    $order->addOrder();
+    
+}
 
 ?>
 
@@ -117,6 +123,7 @@ if (isset($_POST['remove'])){
                     <div class="col-md-6">
                     <form action="CheckoutCustomerDetails.php" method="POST">
                        <button type="submit" class="btn btn-danger mx-2" name="checkout">Continue to Checkout</button>
+                   </form>
                 </div>
             </div>
 

@@ -6,9 +6,9 @@ class orderModel{
 
 //Add order
     function addOrder(){     
-         $sql = "insert into orders( orderItemQty, orderStatus, orderTotalPrice, servProvID, customerID, itemType, itemID) values(:orderItemQty, :orderStatus, :orderTotalPrice, :servProvID, :customerID, :itemType, :itemID)";
+         $sql = "insert into orders(orderID, orderItemQty,orderTime, orderStatus, orderTotalPrice, servProvID, customerID, itemType, itemID) values(:orderItemQty, :orderStatus, :orderTotalPrice, :servProvID, :customerID, :itemType, :itemID)";
 
-        $args = [':orderItemQty'=>$this->orderItemQty, ':orderStatus'=>$this->orderStatus, ':orderTotalPrice'=>$this->orderTotalPrice, ':servProvID'=>$this->servProvID, ':customerID'=>$this->customerID, ':itemType'=>$this->itemType, ':itemID'=>$this->itemID];
+        $args = [':orderID'=>$this->orderID, ':orderItemQty'=>$this->orderItemQty, ':orderTime'=>$this->orderTime, ':orderStatus'=>$this->orderStatus, ':orderTotalPrice'=>$this->orderTotalPrice, ':servProvID'=>$this->servProvID, ':customerID'=>$this->customerID, ':itemType'=>$this->itemType, ':itemID'=>$this->itemID];
         $stmt = DB::run($sql, $args);
         $count = $stmt->rowCount();
         return $count;

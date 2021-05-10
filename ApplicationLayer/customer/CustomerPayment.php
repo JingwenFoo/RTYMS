@@ -1,5 +1,11 @@
 <?php
 session_start();
+require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/orderModel.php';
+
+if (isset($_POST['checkout'])){
+    $orderID = $_POST['orderID'];
+    $orderTotalPrice = $_POST['orderTotalPrice'];
+}
 ?>
 <html>
     <head>
@@ -39,7 +45,7 @@ session_start();
     <div class="aligncenter">
         <img src="shopping-cart-icon.png" alt="Cart Images" width="300" height="300" >
             <h1>YOUR ORDER TOTAL PRICE:</h1>
-            <h1>RM XX.XX</h1>
+            <h1>RM <? $orderTotalPrice    $orderID?></h1>
     </div>
     <br>
     <!-- Payment Gateway (PayPal) -->
