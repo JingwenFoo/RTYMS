@@ -40,7 +40,7 @@ session_start();
     <div class="aligncenter">
         <img src="shopping-cart-icon.png" alt="Cart Images" width="300" height="300" >
             <h1>YOUR ORDER TOTAL PRICE:</h1>
-            <h1>RM XX.XX</h1>
+            <h1>RM <?php echo $total?></h1>
     </div>
     <br>
     <!-- Payment Gateway (PayPal) -->
@@ -49,7 +49,7 @@ session_start();
     <div id="paypal-button-container" style="padding-left: 570px"></div>
 
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=RM"></script>
 
     <script>
         // Render the PayPal button into #paypal-button-container
@@ -62,7 +62,7 @@ session_start();
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '10.00'
+                            value: '<?php echo $total?>'
                         }
                     }]
                 });
@@ -75,7 +75,18 @@ session_start();
                     alert('Payment Success!');
                     window.location.href = "../customer/SuccessPayment.php";
                 });
-            }
+            },
+
+            onReject:function(data, actions) {
+                return actions.order.reject().then(function(details){
+                    // Show a success message to the buyer
+                    alert('Payment Failed!');
+                    window.location.href = "../customer/UnsuccessfulPayment.php";
+                });
+        
+        
+        }
+            
         }).render('#paypal-button-container');
     </script>
     </div>

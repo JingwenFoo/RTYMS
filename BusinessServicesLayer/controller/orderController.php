@@ -13,7 +13,7 @@ class orderController{
         $order->itemType = $_POST['itemType'];
         $order->itemID = $_POST['itemID'];
         if($order->addOrder() > 0){
-        $message = "Sudiqdqud!";
+        $message = "Add order successfully!";
         echo "<script type='text/javascript'>alert('$message');
               window.location = '../../ApplicationLayer/customer/CheckoutCustomerDetails.php'; 
                 </script>"; 

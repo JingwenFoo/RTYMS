@@ -1,4 +1,4 @@
-<?php
+  <?php
 session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/CustomerController.php';
     //$_SESSION['customerName'] = $_POST['customerName'];
@@ -10,8 +10,12 @@ if (isset($_POST['addCustomer'])){
    $_SESSION['customerAddress'] = $_POST['customerAddress'];
    $_SESSION['customerPhone'] = $_POST['customerPhone'];
    $_SESSION['customerEmail'] = $_POST['customerEmail'];
+
    $cust->addCustomer();
 }
+
+    $total=$_GET['total'];
+
 
 ?>
 
@@ -79,6 +83,7 @@ if (isset($_POST['addCustomer'])){
         <h3>Customer Information</h3>
     </div>
     <br><br><br>
+    <?echo $total ?>
     <!-- Customer Information Div -->
       <div class="customerinfo">
         <form role="form" action="" method="POST" enctype="multipart/form-data">

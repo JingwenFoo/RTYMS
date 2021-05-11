@@ -2,13 +2,13 @@
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/ApplicationLayer/template/libs/database.php';
 
 class orderModel{
-    public $orderID, $servProvID, $orderItemQty, $orderTime, $orderStatus, $orderTotalPrice, $customerID, $paymentID, $runnerID, $itemType, $itemID;
+    public $servProvID, $orderItemQty, $orderTime, $orderStatus, $orderTotalPrice, $customerID, $paymentID, $runnerID, $itemType, $itemID;
 
 //Add order
     function addOrder(){     
-         $sql = "insert into orders( orderItemQty, orderStatus, orderTotalPrice, servProvID, customerID, itemType, itemID) values(:orderItemQty, :orderStatus, :orderTotalPrice, :servProvID, :customerID, :itemType, :itemID)";
+         $sql = "insert into orders(orderItemQty,orderTime, orderStatus, orderTotalPrice, servProvID, customerID, itemType, itemID) values(:orderItemQty, :orderStatus, :orderTotalPrice, :servProvID, :customerID, :itemType, :itemID)";
 
-        $args = [':orderItemQty'=>$this->orderItemQty, ':orderStatus'=>$this->orderStatus, ':orderTotalPrice'=>$this->orderTotalPrice, ':servProvID'=>$this->servProvID, ':customerID'=>$this->customerID, ':itemType'=>$this->itemType, ':itemID'=>$this->itemID];
+        $args = [':orderItemQty'=>$this->orderItemQty, ':orderTime'=>$this->orderTime, ':orderStatus'=>$this->orderStatus, ':orderTotalPrice'=>$this->orderTotalPrice, ':servProvID'=>$this->servProvID, ':customerID'=>$this->customerID, ':itemType'=>$this->itemType, ':itemID'=>$this->itemID];
         $stmt = DB::run($sql, $args);
         $count = $stmt->rowCount();
         return $count;
