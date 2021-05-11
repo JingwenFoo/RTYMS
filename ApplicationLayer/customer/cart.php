@@ -25,9 +25,11 @@ if (isset($_POST['remove'])){
      }
   }
 }
-
 $order = new orderController();
 if(isset($_POST['checkout'])){
+    $orderItemQty= $_POST['count'];
+    $orderTotalPrice= $_POST['total'];
+
     $order->addOrder();
     
 }
@@ -121,8 +123,8 @@ if(isset($_POST['checkout'])){
                     </div>
                     <!--Checkout button-->
                     <div class="col-md-6">
-                    <form action="CheckoutCustomerDetails.php" method="POST">
-                       <button type="submit" class="btn btn-danger mx-2" name="checkout">Continue to Checkout</button>
+                    <form action="CheckoutCustomerDetails.php?total=<?php echo $total?>" method="POST">
+                       <input type="submit" class="btn btn-danger mx-2" name="checkout" value="Continue to Checkout"></input>
                    </form>
                 </div>
             </div>

@@ -2,10 +2,7 @@
 session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/orderModel.php';
 
-if (isset($_POST['checkout'])){
-    $orderID = $_POST['orderID'];
-    $orderTotalPrice = $_POST['orderTotalPrice'];
-}
+$total=$_SESSION['total'];
 ?>
 <html>
     <head>
@@ -45,7 +42,7 @@ if (isset($_POST['checkout'])){
     <div class="aligncenter">
         <img src="shopping-cart-icon.png" alt="Cart Images" width="300" height="300" >
             <h1>YOUR ORDER TOTAL PRICE:</h1>
-            <h1>RM <? $orderTotalPrice    $orderID?></h1>
+            <h1>RM <?php echo $total?></h1>
     </div>
     <br>
     <!-- Payment Gateway (PayPal) -->
@@ -80,7 +77,18 @@ if (isset($_POST['checkout'])){
                     alert('Payment Success!');
                     window.location.href = "../customer/SuccessPayment.php";
                 });
-            }
+            },
+
+            onReject:function(data, actions) {
+                return actions.order.reject().then(function(details){
+                    // Show a success message to the buyer
+                    alert('Payment Failed!');
+                    window.location.href = "../customer/UnsuccessfulPayment.php";
+                });
+        
+        
+        }
+            
         }).render('#paypal-button-container');
     </script>
     </div>
