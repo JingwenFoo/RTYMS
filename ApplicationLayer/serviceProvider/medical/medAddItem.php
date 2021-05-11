@@ -1,11 +1,12 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/medicalController.php';
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/registrationController.php';
-
+//hey
 $item = new medicalController();
 $name = new registerController();
 $datas = $name->viewMedSP();
 $data1 = $name->viewMedSP();
+//hello
 
 if(isset($_POST['add'])){
     $item->addItem();

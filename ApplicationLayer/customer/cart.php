@@ -30,9 +30,6 @@ if(isset($_POST['checkout'])){
     $orderItemQty= $_POST['count'];
     $orderTotalPrice= $_POST['total'];
 
-    $order->addOrder();
-    
-}
 
 ?>
 

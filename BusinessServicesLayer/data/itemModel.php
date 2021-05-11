@@ -64,7 +64,7 @@ class itemModel{
         $sql = "SELECT * FROM item"; 
         return DB::run($sql);
     }
-
+//comment
     //edit item
     function modifyItem(){
 

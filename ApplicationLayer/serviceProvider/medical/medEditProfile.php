@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/registrationController.php';
-
+//f
 //$servProvID = $_GET['servProvID']; //retrieve id
 
 $medSP = new registerController();
