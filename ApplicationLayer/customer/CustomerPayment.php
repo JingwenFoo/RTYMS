@@ -51,7 +51,7 @@ $total=$_SESSION['total'];
     <div id="paypal-button-container" style="padding-left: 570px"></div>
 
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=RM"></script>
 
     <script>
         // Render the PayPal button into #paypal-button-container
@@ -64,7 +64,7 @@ $total=$_SESSION['total'];
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '10.00'
+                            value: '<?php echo $total?>'
                         }
                     }]
                 });

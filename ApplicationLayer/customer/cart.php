@@ -89,7 +89,7 @@ if(isset($_POST['checkout'])){
                     else{
                         echo "<h5>Cart is Empty</h5>";
                     }
-
+                $_SESSION['total']=$total;
                 ?>
 
             </div>
@@ -124,7 +124,9 @@ if(isset($_POST['checkout'])){
                     <!--Checkout button-->
                     <div class="col-md-6">
                     <form action="CheckoutCustomerDetails.php?total=<?php echo $total?>" method="POST">
-                       <input type="submit" class="btn btn-danger mx-2" name="checkout" value="Continue to Checkout"></input>
+                        <input type="hidden" name="orderid" value="<?php echo $orderid?>">
+                       
+                       <input type="submit" class="btn btn-danger mx-2" name="checkout" value="Continue to Checkout">
                    </form>
                 </div>
             </div>
