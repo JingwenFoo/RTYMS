@@ -15,6 +15,7 @@ if (isset($_POST['addCustomer'])){
 }
 
     $total=$_GET['total'];
+    
 
 
 ?>
@@ -83,7 +84,6 @@ if (isset($_POST['addCustomer'])){
         <h3>Customer Information</h3>
     </div>
     <br><br><br>
-    <?echo $total ?>
     <!-- Customer Information Div -->
       <div class="customerinfo">
         <form role="form" action="" method="POST" enctype="multipart/form-data">
