@@ -87,7 +87,7 @@ if (isset($_POST['addCustomer'])){
 
     <!-- Customer Information Div -->
       <div class="customerinfo">
-        <form  action="CustomerPayment.php" method="POST" >
+        <form  action="" method="POST" >
         <table>
             <h4>Delivery Information</h4>       
             <tr>
