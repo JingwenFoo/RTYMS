@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/CustomerController.php';
+$custID=$_SESSION['cid'];
 ?>
 <html>
     <head>
@@ -61,7 +62,29 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/
     <div class="aligncenter">
         <img src="green-tick-icon.png" alt="Tick Icon" width="200" height="200" >
             <h1>Your Order Has Been Made!</h1>
-            <h2>Order ID: XX</h2>
+            <table align="center" width="600px" border=1 >
+                <th>Order ID</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <?php 
+                    $con = new mysqli("localhost","root","","rtyms");
+                    $qry="SELECT * FROM orders INNER JOIN item ON orders.itemID = item.itemID WHERE customerID='$custID'";
+                    $result = $con->query($qry);
+                    if($result) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td align='center'>".$row['orderID']."</td>";
+                            echo "<td align='center'>".$row['itemName']."</td>";
+                            echo "<td align='center'>".$row['orderItemQty']."</td>";
+                            echo "<td align='center'>".$row['orderTotalPrice']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "<tr>";
+                    }
+                ?>
+            </table>
+            <br>
             <p>You can track your order using the Order ID above at customer homepage</p>
     </div>
     <br><br><br><br>
