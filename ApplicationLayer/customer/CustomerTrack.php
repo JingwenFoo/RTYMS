@@ -76,6 +76,28 @@ if(isset($_POST['find'])){
                 position:relative;
                 top:1px;
             }
+			
+			.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
         </style>
 </head>
 <body>
@@ -98,14 +120,59 @@ if(isset($_POST['find'])){
         foreach($finds as $row){
 
         ?>
-		
-		
-    <h2 style="text-align:center">Your Order Status</h2>
-    <p style="text-align:center"><input style="font-size: 30px;" type="text" value="<?=$row['orderID']?>" readonly placeholder="Order ID" size="1px">
-    <input style="font-size: 30px;" type="text" value="<?=$row['orderStatus']?>" readonly placeholder="Order Status"> 
-    <input style="font-size: 30px;" type="text" value="<?=$row['orderTime']?>" readonly placeholder="Order Status">
-    <input style="font-size: 30px;" type="text" value="<?=$row['itemType']?>" readonly placeholder="Order Status">	</p>
-    <?php } } ?>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+}
+</style>
+	<table class="styled-table">
+			<thead>
+				<tr>
+					<th class="cart-romove item">#</th>
+					
+					
+			
+					<th class="cart-qty item">Quantity</th>
+					<th class="cart-sub-total item">Order Time</th>
+					<th class="cart-total item">Order Status</th>
+					<th class="cart-total item">Order Type</th>
+					<th class="cart-description item">Total Price</th>
+					<th class="cart-total last-item">Action</th>
+				</tr>
+			</thead><!-- /thead -->
+			
+			<tbody>
+
+				<tr>
+					
+					
+					
+					<td class="cart-product-quantity">
+						<?php echo $qty=$row['orderID']; ?>   
+		            </td>
+					<td class="cart-product-sub-total"><?php echo $price=$row['orderItemQty']; ?>  </td>
+					<td class="cart-product-sub-total"><?php echo $price=$row['orderTime']; ?>  </td>
+					<td class="cart-product-sub-total"><?php echo $price=$row['orderStatus']; ?>  </td>
+					<td class="cart-product-sub-total"><?php echo $price=$row['itemType']; ?>  </td>
+					<td class="cart-product-sub-total"><?php echo $price=$row['orderTotalPrice']; ?>  </td>
+					
+
+				
+					
+					
+					<td>
+ <a href="javascript:void(0);" onClick="popUpWindow('http://localhost:8080/ACES/ApplicationLayer/TrackingandAnalytic/track-order.php?oid=<?php echo htmlentities($row['orderid']);?>');" title="Track order">
+					Track</td>
+				</tr>
+<?php } } else { ?>
+				<tr><td colspan="8">Either order id </td></tr>
+				<?php } ?>
+			</tbody><!-- /tbody -->
+		</table><!-- /table -->
 
     </div>
     
