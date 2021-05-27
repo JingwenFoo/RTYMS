@@ -84,9 +84,10 @@ if (isset($_POST['addCustomer'])){
         <h3>Customer Information</h3>
     </div>
     <br><br><br>
+
     <!-- Customer Information Div -->
       <div class="customerinfo">
-        <form role="form" action="" method="POST" enctype="multipart/form-data">
+        <form  action="CustomerPayment.php" method="POST" >
         <table>
             <h4>Delivery Information</h4>       
             <tr>
@@ -114,6 +115,7 @@ if (isset($_POST['addCustomer'])){
                 <td style="padding: 10px"><input type="email" name="customerEmail" required size="50"></td>
             </tr>
         </table>
+            <input type="hidden" name="custName" value="{{customerName}}">
         <p style="text-align: center;"><input class="confirmButton" type="submit" name="addCustomer" value="CONFIRM DETAILS"></p>
         </form>  
       </div>
