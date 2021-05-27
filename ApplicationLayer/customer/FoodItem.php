@@ -7,10 +7,14 @@ require_once ('component.php');
 $item = new foodController();
 $data = $item->viewAll();
 
-if(isset($_POST["add"]))
+if(isset($_POST['add']))
 {
+	
+	
+
 	if(isset($_SESSION["shopping_cart"]))
 	{
+
 		$item_array_id = array_column($_SESSION["shopping_cart"], "itemID");
 		if(!in_array($_POST["itemID"], $item_array_id))
 		{
@@ -19,6 +23,16 @@ if(isset($_POST["add"]))
 				'itemID'			=>	$_POST["itemID"]				
 			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
+			$itemID=$_POST['itemID'];
+	$itemPrice=$_POST['itemPrice'];
+			$con = new mysqli("localhost","root","","rtyms");
+    		$query="INSERT INTO cart values ('$itemID',1,'$itemPrice');";
+    		if ($con->query($query)) {
+
+    		echo "<script>alert('Product is added successfully in the cart..!')</script>";
+            echo "<script>window.location = 'FoodItem.php'</script>";
+
+    }
 		}
 		else
 		{
