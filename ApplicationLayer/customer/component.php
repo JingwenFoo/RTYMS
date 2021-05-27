@@ -24,8 +24,10 @@ function component($itemName, $itemPrice, $image, $itemDesc, $itemID){
                             <h5>
                                 <span class=\"price\">RM$itemPrice</span>
                             </h5>
+                            <input type='hidden' name='itemID' value='$itemID'>
+                             <input type='hidden' name='itemPrice' value='$itemPrice'>
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
-                             <input type='hidden' name='itemID' value='$itemID'>
+
                         </div>
                     </div>
                 </form>
