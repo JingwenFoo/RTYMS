@@ -16,7 +16,7 @@ if(isset($_POST['add']))
 {
 	$itemID=$_POST['itemID'];
 	$itemPrice=$_POST['itemPrice'];
-    		$query="INSERT INTO cart (itemID, itemPrice) values ('$itemID','$itemPrice')";
+    		$query="INSERT INTO cart (itemID, itemQuantity, itemPrice) values ('$itemID',1,'$itemPrice')";
     		if ($con->query($query)) {
 
     		echo "<script>alert('Product is added successfully in the cart..!')</script>";
