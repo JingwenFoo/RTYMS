@@ -25,11 +25,6 @@ if (isset($_POST['remove'])){
      }
   }
 }
-$order = new orderController();
-if(isset($_POST['checkout'])){
-    $orderItemQty= $_POST['count'];
-    $orderTotalPrice= $_POST['total'];
-
 
 ?>
 

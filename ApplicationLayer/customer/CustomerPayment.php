@@ -103,6 +103,9 @@ $orderItemQty=1;
 
     
 
+
+require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/orderModel.php';
+$total = $_SESSION['total'];
 ?>
 <html>
     <head>
@@ -217,8 +220,7 @@ $orderItemQty=1;
     <div id="paypal-button-container" class="aligncenter"></div>
 
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=MYR"></script>
-    
+ <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=MYR"></script>
     <script>
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
