@@ -9,9 +9,7 @@ $data = $item->viewAll();
 $con = new mysqli("localhost","root","","rtyms");
 	if($con->connect_error) {
 		die("connection failed : " . $con->connect_error);
-	} else {
-		echo "Successfully Connected";
-	}
+	} 
 if(isset($_POST['add']))
 {
 	$itemID=$_POST['itemID'];
