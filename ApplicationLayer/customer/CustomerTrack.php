@@ -141,7 +141,7 @@ table {
 					<th class="cart-total item">Order Status</th>
 					<th class="cart-total item">Order Type</th>
 					<th class="cart-description item">Total Price</th>
-					<th class="cart-total last-item">Action</th>
+					
 				</tr>
 			</thead><!-- /thead -->
 			
@@ -150,7 +150,7 @@ table {
 				<tr>
 					
 					
-					
+	//ss				
 					<td class="cart-product-quantity">
 						<?php echo $qty=$row['orderID']; ?>   
 		            </td>
@@ -164,9 +164,7 @@ table {
 				
 					
 					
-					<td>
- <a href="javascript:void(0);" onClick="popUpWindow('http://localhost:8080/ACES/ApplicationLayer/TrackingandAnalytic/track-order.php?oid=<?php echo htmlentities($row['orderid']);?>');" title="Track order">
-					Track</td>
+					
 				</tr>
 <?php } } else { ?>
 				<tr><td colspan="8">Either order id </td></tr>
