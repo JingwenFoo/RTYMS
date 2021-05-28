@@ -4,6 +4,7 @@ session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/itemModel.php';
  require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/orderController.php';
 require_once ('component.php');
+
 $item = new itemModel();
 $data = $item->viewAll();
 $total = $_SESSION['total'];
@@ -38,9 +39,16 @@ $orderItemQty=1;
         $result = $con->query($query);
         $query1="UPDATE orders SET orderStatus = 'Pending', customerID = '$customerID' where orderStatus=' '";
         $result = $con->query($query1);
-   
+        $query2="DELETE FROM cart";
+        $result = $con->query($query2);
+
+        if($result){
+            echo "<script>alert('Order has been confirmed..!')</script>";
+                echo "<script>window.location = 'customerPayment.php'</script>";
+        }
     }            
-            
+    
+
 
     
 
@@ -134,16 +142,16 @@ $orderItemQty=1;
            
                  </table>
               <br> 
-               <button name="checkout">Confirm Order</button> 
+               <button style="width:100px ; height:50px ; color:green;"  name="checkout">Confirm Order</button> 
             <hr>
-            <br>
+
           
     <!-- stripe payment form -->
 
     <br>
    
     <!-- Payment Gateway (PayPal) -->
-    <h3 style="text-align:center">Pay Now</h3>
+    <h3 style="text-align:center">Pay By PayPal</h3>
     
     <!-- Set up a container element for the button -->
     <div id="paypal-button-container" class="aligncenter"></div>
@@ -191,7 +199,20 @@ $orderItemQty=1;
             
         }).render('#paypal-button-container');
     </script>
-    </div>
+    
     <!-- Payment Gateway (PayPal) ENDED -->
+
+
+  <br>
+    <h3 style="text-align: center;">Pay By Card</h3>
+          
+    <form action="payByCard.php" method="POST">
+            <input type="hidden" name="total" value="<?php echo $total?>">
+          <script type="text/javascript" src="/javascripts/jquery-3.1.1.min.js"></script>
+          <script 
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_51IvExWD5UVlVX4fhvLGu61AlRC1WSu3yt5OXpDAdZlZZj8ycK7rLqEtVVVbUmIEHfNPpiZXKpZpkIhuGnU0AktlL00Xa9DYVmm" data-amount="<?php echo str_replace(",", "", $total*100)?>" data-name="RTYMS" data-description="RTYMS checkout" data-image="" data-currency="myr" data-locale="auto"
+          ></script>
+      </form>
+      </div>
     </body>
 </html>
