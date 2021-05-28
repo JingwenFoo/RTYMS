@@ -8,12 +8,24 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/
 
 $item = new itemModel();
 $data = $item->viewAll();
-
+$con = new mysqli("localhost","root","","rtyms");
+    if($con->connect_error) {
+        die("connection failed : " . $con->connect_error);
+    } else {
+        echo "Successfully Connected";
+    }
 if (isset($_POST['remove'])){
   if ($_GET['action'] == 'remove'){
+        $itemID=$_POST['itemID'];
+        $query="DELETE FROM cart where itemID = '$itemID'";
+            if ($con->query($query)) {
+                echo "<script>alert('Product has been Removed..!')</script>";
+                echo "<script>window.location = 'cart.php'</script>";
+        }
       foreach ($_SESSION['shopping_cart'] as $key => $value){
         if($value["itemID"] == $_GET['id']){
               unset($_SESSION['shopping_cart'][$key]);
+
               echo "<script>alert('Product has been Removed...!')</script>";
               echo "<script>window.location = 'cart.php'</script>";
           }
@@ -26,6 +38,22 @@ if (isset($_POST['remove'])){
   }
 }
 
+
+
+if(isset($_POST['save']))
+{
+    if($_GET['action']== 'remove')
+    {
+            $itemID=$_POST['itemID'];
+            $itemQuantity=$_POST['itemQuantity'];
+            $query1="UPDATE cart SET itemQuantity = '$itemQuantity' where itemID = '$itemID'";
+            if ($con->query($query1)) {
+
+            echo "<script>alert('Product is updated successfully in the cart..!')</script>";
+            echo "<script>window.location = 'cart.php'</script>";
+        }
+    }
+}
 ?>
 
 <!doctype html>

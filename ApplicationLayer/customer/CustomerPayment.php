@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/itemModel.php';
+ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/orderController.php';
 require_once ('component.php');
 $item = new itemModel();
 $data = $item->viewAll();
@@ -21,91 +23,27 @@ $orderItemQty=1;
          while($row = $result->fetch_assoc()) {
    
             $custID = $row['customerID'];
-            
+            $_SESSION['cid']=$custID;
         }
     }
-    require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/orderController.php';
-
+   
 
     $order = new orderController();
-    if (isset($_POST['confirm'])){
+    if (isset($_POST['checkout'])){
+       
+        $customerID = $_POST['customerID'];
+        $date = $_POST['orderTime'];  
         
-
-        /*    $orderItemQty = $_POST['orderItemQty'];
-            $orderTime = $_POST['orderTime'];
-            $itemPrice = $_POST['itemPrice'];
-            $customerID = $_POST['customerID'];
-            $itemID = $_POST['itemID'];
-            $sql = "INSERT INTO orders values (NULL,'$orderItemQty', '$itemID', '$orderTime', 'Pending', '$itemPrice', '$customerID')";
-            $result1 = $con->query($sql);
-        if ($result1->num_rows > 0) {
-        $message = "Add order successfully!";
-        echo "<script type='text/javascript'>alert('$message');
-              window.location = '../../ApplicationLayer/customer/CustomerPayment.php'; 
-                </script>"; 
-            }*/
-            $order = [];
-            $order['orderItemQty'] = $_POST['orderItemQty'];
-            $order['orderTime'] = $_POST['orderTime'];
-            $order['itemPrice'] = $_POST['itemPrice'];
-            $order['customerID'] = $_POST['customerID'];
-            $order['itemID'] = $_POST['itemID'];
-            $orderArr = [];
-            array_push($orderArr, $order);
-           // print_r($orderArr);
-           
-            if(is_array($orderArr)){
-                foreach ($orderArr as $row){
-                    var_dump($orderArr);
-                    
-
-                }
-            }
-            //$orderArr->addOrder();
-        
-/*
-            $orderArr = array();
-            
-                $orderArr[] = $key;
-            
-            array_push($orderArr, $orderItemQty, $orderTime, $orderStatus, $itemPrice, $customerID, $itemID);
-            $count = count($_SESSION["shopping_cart"]);
-            $sql = "INSERT INTO orders values ";
-            for($i=0;$i< $count;$i++){
-                $sql .= "('$orderItemQty', '$orderTime', '$orderStatus', '$itemPrice', '$customerID')";
-                if($i < ($count -1 ))
-                    $sql .=",";
-            }
-            print_r($orderArr);
-          
-           /* $orderArr[] = array("orderItemQty"=>$orderItemQty,"orderTime"=>$orderTime,"orderStatus"=>'Pending',"orderTotalPrice"=>$orderTotalPrice,"customerID"=>$customerID);
-            
-            foreach ($orderArr as $row=> $value) {
-                $orderItemQty = mysql_real_escape_string($con, $value[0]);
-                $orderTime =  mysql_real_escape_string($con, $value[1]);
-                $orderStatus =  mysql_real_escape_string($con, $value[2]);
-                $orderTotalPrice =  mysql_real_escape_string($con, $value[3]);
-                $customerID =  mysql_real_escape_string($con, $value[4]);
-                $value[] = " ('$orderItemQty', '$orderTime', '$orderStatus', '$orderTotalPrice', '$customerID')";
-            }*/
-           /* $orderStr = serialize($orderArr);
-            //    $sql = "INSERT INTO orders values ('$orderItemQty', '$itemID', '$orderTime', '$orderStatus', '$itemPrice', '$customerID')";
-               // $sql = implode(', ', $orderArr);
-                $result1 = $con->query($sql);
-        if ($result1->num_rows > 0) {
-  // output data of each row
-        $message = "Add order successfully!";
-        echo "<script type='text/javascript'>alert('$message');
-              window.location = '../../ApplicationLayer/customer/CustomerPayment.php'; 
-                </script>"; */
+        $query="INSERT INTO orders ( orderItemQty,  orderTotalPrice,  itemID) SELECT itemQuantity, itemPrice, itemID FROM cart ;";
+        $result = $con->query($query);
+        $query1="UPDATE orders SET orderStatus = 'Pending', customerID = '$customerID' where orderStatus=' '";
+        $result = $con->query($query1);
+   
     }            
             
 
     
 
-
-require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/data/orderModel.php';
-$total = $_SESSION['total'];
 ?>
 <html>
     <head>
@@ -180,47 +118,39 @@ $total = $_SESSION['total'];
                                         <td align="center"><?php echo $row['itemPrice'];?></td> 
                                     </tr>
                                     <tr>
-                                    <form action="" method="POST">
-                                         <input type="hidden" name="customerID" value="<?php echo $custID?>">
-                                         <input type="hidden" name="orderTime" value="<?php echo $date?>">
-                                         <input type="hidden" name="itemID" value="<?php echo $row['itemID']?>">
-                                         <input type="hidden" name="orderItemQty" value="1">
-                                         <input type="hidden" name="itemPrice" value="<?php echo $row['itemPrice']?>">
-                                         
-                                            </tr>
-                          
-                                   
+                                         <form action="" method="POST">
+                <input type="hidden" name="itemID" value="<?php echo $itemID?>">
+                <input type="hidden" name="customerID" value="<?php echo $custID?>">
+                 <input type="hidden" name="orderTime" value="<?php echo $date?>">
+            
+        </tr>
                           <?php      }
                           
-                             
                           }   
                       }
-                  
                                     
                     }
                     ?>
-
-                    </table>
-                    <br>
-                    <input type="submit" name="confirm" value="Confirm Order">
-                               </form>
-                               <br>
+           
+                 </table>
+              <br> 
+               <button name="checkout">Confirm Order</button> 
             <hr>
             <br>
-           
-    
-
+          
     <!-- stripe payment form -->
 
     <br>
-  
+   
     <!-- Payment Gateway (PayPal) -->
     <h3 style="text-align:center">Pay Now</h3>
+    
     <!-- Set up a container element for the button -->
     <div id="paypal-button-container" class="aligncenter"></div>
-
+</form>
     <!-- Include the PayPal JavaScript SDK -->
- <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=MYR"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZtgi4JKNGstpcXVtVQHlc2rwZuZ8-2D43ImgD4TTzwLpcM82dUgnG4D4DdmGX_cMJAZoA3LVs859h6z&currency=MYR"></script>
+    
     <script>
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
@@ -245,6 +175,7 @@ $total = $_SESSION['total'];
                     // Show a success message to the buyer
                     alert('Payment Success!');
                     window.location.href = "../customer/SuccessPayment.php";
+
                 });
             },
 

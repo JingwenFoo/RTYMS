@@ -1,4 +1,5 @@
 <?php
+$con = new mysqli("localhost","root","","rtyms");
 //shopping cart component
 function component($itemName, $itemPrice, $image, $itemDesc, $itemID){
     $element = "
@@ -24,8 +25,10 @@ function component($itemName, $itemPrice, $image, $itemDesc, $itemID){
                             <h5>
                                 <span class=\"price\">RM$itemPrice</span>
                             </h5>
+                            <input type='hidden' name='itemID' value='$itemID'>
+                             <input type='hidden' name='itemPrice' value='$itemPrice'>
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
-                             <input type='hidden' name='itemID' value='$itemID'>
+
                         </div>
                     </div>
                 </form>
@@ -46,13 +49,15 @@ function cartElement($image, $itemName, $itemPrice, $itemID){
                             <div class=\"col-md-6\">
                                 <h5 class=\"pt-2\">$itemName</h5>
                                 <h5 class=\"pt-2\">RM$itemPrice</h5>
-                                <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
+                                <input type='hidden' name='itemID' value='$itemID'>
+
+                                <button type=\"submit\" name=\"save\"class=\"btn btn-warning\">Save for Later</button>
                                 <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>
                             </div>
                             <div class=\"col-md-3 py-5\">
                                 <div>
                                     <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
-                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
+                                    <input type=\"text\" name=\"itemQuantity\"  value=\"1\" class=\"form-control w-25 d-inline\">
                                     <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
                                 </div>
                             </div>

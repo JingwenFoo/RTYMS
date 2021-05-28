@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 05:43 AM
+-- Generation Time: May 27, 2021 at 02:24 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.28
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,6 +43,19 @@ INSERT INTO `admin` (`id`, `adminUsername`, `adminPassword`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cartID` int(11) NOT NULL,
+  `itemID` int(11) NOT NULL,
+  `itemQuantity` int(11) NOT NULL,
+  `itemPrice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -60,10 +72,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerID`, `customerName`, `customerAddress`, `customerEmail`, `customerPhone`) VALUES
-(1, 'Ahmidah', 'UMP, Pekan', 'falah@rta', '012-1234567'),
-(2, 'Syahier', 'UMP, Gambang', 'a@a', '011-1234567'),
-(3, 'Mahesh', 'Taman Tas, Kuantan', 'a@a', '013-1234567'),
-(4, 'Saimah', 'Ump, Gambang', 'ikea@inov', '0121234567');
+(24, 'Foo Jing Wen', '55,Kampung Baru Chendrong', 'jwen98.jwf@gmail.com', '0179818528'),
+(25, 'Foo Jing Ying', '55,Kampung Baru Chendrong', 'jwen98.jwf@gmail.com', '0179818528'),
+(26, 'Solar Kim', 'UMP PEKAN', 'solar@gmail.com', '0128323223');
 
 -- --------------------------------------------------------
 
@@ -110,9 +121,7 @@ CREATE TABLE `orders` (
   `orderTime` datetime NOT NULL DEFAULT current_timestamp(),
   `orderStatus` varchar(50) NOT NULL,
   `orderTotalPrice` float NOT NULL,
-  `servProvID` int(11) DEFAULT NULL,
   `customerID` int(11) DEFAULT NULL,
-  `itemType` varchar(11) NOT NULL,
   `itemID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,16 +129,16 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `orderItemQty`, `orderTime`, `orderStatus`, `orderTotalPrice`, `servProvID`, `customerID`, `itemType`, `itemID`) VALUES
-(1, 21, '2020-07-14 12:29:47', 'Delivered', 119.12, 1, 1, 'Medical', 1),
-(2, 122, '2020-07-14 13:13:49', 'Pending', 123.11, 1, 2, 'Medical', 2),
-(3, 10, '2020-07-14 17:40:37', 'Delivered', 123.11, 1, 3, 'Medical', 3),
-(4, 10, '2020-07-18 22:23:47', 'Pending', 10.1, 2, 3, 'Good', 4),
-(5, 10, '2020-07-18 22:38:45', 'Pending', 123.11, 2, 2, 'Good', 5),
-(6, 1, '2020-07-20 08:21:37', 'Pending', 100, 3, 3, 'Food', 6),
-(7, 10, '2020-07-20 08:25:45', 'Pending', 100, 3, 2, 'Food', 7),
-(8, 10, '2020-07-20 08:26:48', 'Pending', 123.11, 4, 1, 'Pet', 8),
-(9, 10, '2020-07-20 08:27:28', 'Pending', 119.12, 4, 3, 'Pet', 9);
+INSERT INTO `orders` (`orderID`, `orderItemQty`, `orderTime`, `orderStatus`, `orderTotalPrice`, `customerID`, `itemID`) VALUES
+(1, 21, '2020-07-14 12:29:47', 'Delivered', 119.12, 1, 1),
+(2, 122, '2020-07-14 13:13:49', 'Pending', 123.11, 2, 2),
+(3, 10, '2020-07-14 17:40:37', 'Delivered', 123.11, 3, 3),
+(4, 10, '2020-07-18 22:23:47', 'Pending', 10.1, 3, 4),
+(5, 10, '2020-07-18 22:38:45', 'Pending', 123.11, 2, 5),
+(6, 1, '2020-07-20 08:21:37', 'Pending', 100, 3, 6),
+(7, 10, '2020-07-20 08:25:45', 'Pending', 100, 2, 7),
+(8, 10, '2020-07-20 08:26:48', 'Pending', 123.11, 1, 8),
+(9, 10, '2020-07-20 08:27:28', 'Pending', 119.12, 3, 9);
 
 -- --------------------------------------------------------
 
@@ -199,6 +208,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cartID`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -239,10 +254,16 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `item`

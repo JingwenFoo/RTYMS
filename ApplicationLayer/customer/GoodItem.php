@@ -6,10 +6,23 @@ require_once ('component.php');
 
 $item = new goodController();
 $data = $item->viewAll();
-
-
-if(isset($_POST["add"]))
+$con = new mysqli("localhost","root","","rtyms");
+	if($con->connect_error) {
+		die("connection failed : " . $con->connect_error);
+	} else {
+		echo "Successfully Connected";
+	}
+if(isset($_POST['add']))
 {
+	$itemID=$_POST['itemID'];
+	$itemPrice=$_POST['itemPrice'];
+    		$query="INSERT INTO cart (itemID, itemQuantity, itemPrice) values ('$itemID',1,'$itemPrice')";
+    		if ($con->query($query)) {
+
+    		echo "<script>alert('Product is added successfully in the cart..!')</script>";
+            echo "<script>window.location = 'FoodItem.php'</script>";
+
+    }
 	if(isset($_SESSION["shopping_cart"]))
 	{
 		$item_array_id = array_column($_SESSION["shopping_cart"], "itemID");
