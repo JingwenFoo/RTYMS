@@ -150,7 +150,7 @@ table {
 				<tr>
 					
 					
-	//ss				
+					
 					<td class="cart-product-quantity">
 						<?php echo $qty=$row['orderID']; ?>   
 		            </td>
