@@ -85,11 +85,13 @@ $custID=$_SESSION['cid'];
                 ?>
             </table>
             <br>
-            <p>You can track your order using the Order ID above at customer homepage</p>
+            <p>You can track your order using the Order ID above</p>
     </div>
     <br><br><br><br>
     <p style="text-align: center"><input class="confirmButton" type="button" onclick="location.href='../home/CustomerHomePage.php'" value="Return To Homepage"></p>
-    <br><br> 
+	<br><br> 
+	<p style="text-align: center"><input class="confirmButton" type="button" onclick="location.href='../customer/searchtrack.php'" value="Track"></p>
+    <br><br>
     <h3 style="text-align: center; color: #FFC300">THANK YOU FOR USING RUNNER TO YOU</h3>
         </body>
 </html>
