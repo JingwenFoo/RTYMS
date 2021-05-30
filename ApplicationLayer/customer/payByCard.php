@@ -20,3 +20,8 @@ if($charge){
 	echo "<script>alert('Payment Success!')</script>";
     echo "<script>window.location = 'SuccessPayment.php'</script>";
 }
+else
+{
+	echo "<script>alert('Payment Failed!')</script>";
+    echo "<script>window.location = 'UnSuccessfulPayment.php'</script>";
+}
