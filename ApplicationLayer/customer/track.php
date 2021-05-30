@@ -2,7 +2,7 @@
  <?php  
  $idURL = $_POST['itemID'];
  $connect = mysqli_connect("localhost", "root", "", "rtyms");  
- $sql = "SELECT orderID,orderStatus,orderTime FROM orders WHERE itemID = '$idURL' ";  
+ $sql = "SELECT orderID,orderItemQty,orderTotalPrice,orderStatus,orderTime FROM orders WHERE itemID = '$idURL' ";  
  $result = mysqli_query($connect, $sql);  
  ?>  
 
@@ -156,16 +156,20 @@ table, th, td {
 <body>
  <body>  
            <br />  
-           <div class="container" style="width:300px;">  
+           <div class="container" style="width:800px;">  
                 <h3 align=""></h3><br />                 
                 <div class="table-responsive">  
                      <table class="table table-striped">  
                           <tr>  
                                <th>orderID</th>  
-                              
-							   <th>orderStatus</th>
 							   
-							   <th>orderTime</th>
+							   <th>Order Quantity</th>
+							   
+							   <th>Order Total Price</th>
+                              
+							   <th>Order Status</th>
+							   
+							   <th>Order Time</th>
 							   
 							   
                           </tr>  
@@ -177,6 +181,10 @@ table, th, td {
                           ?>  
                           <tr>  
                                <td><?php echo $row["orderID"];?></td>  
+							   
+							    <td><?php echo $row["orderItemQty"]; ?></td> 
+							   
+							    <td><?php echo $row["orderTotalPrice"]; ?></td>
 							  
                                <td><?php echo $row["orderStatus"]; ?></td> 
 							   
