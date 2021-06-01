@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/CustomerController.php';
+$custID=$_SESSION['cid'];
+
 ?>
 <html>
     <head>
@@ -60,7 +62,29 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/
     <br><br>
     <div class="aligncenter">
         <img src="cross-icon.png" alt="Tick Icon" width="200" height="200" >
-            <h1>Payment for Order ID XX could not be proceed.</h1>
+            <h1>Payment for Order could not be proceed.</h1>
+            <table align="center" width="600px" border=1 >
+                <th>Order ID</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <?php 
+                    $con = new mysqli("localhost","root","","rtyms");
+                    $qry="SELECT * FROM orders INNER JOIN item ON orders.itemID = item.itemID WHERE customerID='$custID'";
+                    $result = $con->query($qry);
+                    if($result) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td align='center'>".$row['orderID']."</td>";
+                            echo "<td align='center'>".$row['itemName']."</td>";
+                            echo "<td align='center'>".$row['orderItemQty']."</td>";
+                            echo "<td align='center'>".$row['orderTotalPrice']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "<tr>";
+                    }
+                ?>
+            </table>
     </div>
     <br><br><br><br>
     <p style="text-align: center"><input class="tryAgain" type="button" onclick="location.href='../customer/CustomerPayment.php'" value="Try Again"></p>
