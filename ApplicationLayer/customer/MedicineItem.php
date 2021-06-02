@@ -3,7 +3,7 @@ session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/medicalController.php';
 require_once ('component.php');
-//a
+
 $item = new medicalController();
 $data = $item->viewAll();
 
