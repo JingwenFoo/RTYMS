@@ -3,7 +3,7 @@ session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/medicalController.php';
 require_once ('component.php');
-//v
+//a
 $item = new medicalController();
 $data = $item->viewAll();
 
@@ -54,7 +54,7 @@ if(isset($_POST["add"]))
 	
 <body>
 	<?php require_once ("header.php"); ?>
-	<div class="sidebar">
+	<div class="sidebar" style="margin-top: 55px;">
         <div class="sidebar_inner">
         <ul>
             <li>

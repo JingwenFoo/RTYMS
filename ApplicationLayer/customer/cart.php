@@ -114,10 +114,32 @@ if(isset($_SESSION['total']))
                             echo $total;
                             ?></h6>
                     </div>
+
+                    <h5>Select Your prefered Courier</h5>
+  
+<label class="container">JnT
+  <input type="radio" checked="checked" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Ninja Van
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Pos Laju
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Gdex Express
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label>
+
+
                     <!--Checkout button-->
                     <div class="col-md-6">
                     <form action="CheckoutCustomerDetails.php" method="POST">
                        <button type="submit" class="btn btn-danger mx-2" name="checkout">Continue to Checkout</button>
+
                 </div>
             </div>
 
