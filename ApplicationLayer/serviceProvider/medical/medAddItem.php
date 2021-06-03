@@ -190,6 +190,12 @@ session_start();
                         <label>Product name</label>
                         <input type="text" name="itemName" class="form-control" style="width: 90%" placeholder="eg: Dermatix" required>
                       </div>
+
+                      <div class="">
+                        <label>Product Description and Detail</label>
+                        <input type="text" name="itemName" class="form-control" style="width: 90%" placeholder="eg: Dermatix" required>
+                      </div>
+
                   </div>
                 <div class="row">
                   <div class="col-md-4">
