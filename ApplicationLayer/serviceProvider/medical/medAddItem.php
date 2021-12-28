@@ -21,6 +21,8 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>RTYMS</title>
   <!-- Tell the browser to be responsive to screen width -->
+
+ <!--  section 2b -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../../ApplicationLayer/template/plugins/fontawesome-free/css/all.min.css">
