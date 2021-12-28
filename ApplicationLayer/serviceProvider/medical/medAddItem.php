@@ -1,4 +1,4 @@
-<?php
+f<?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/medicalController.php';
 require_once $_SERVER["DOCUMENT_ROOT"].'/RTYMS/BusinessServicesLayer/controller/registrationController.php';
 
@@ -192,8 +192,8 @@ session_start();
                       </div>
 
                       <div class="">
-                        <label>Product Description and Detail</label>
-                        <input type="text" name="itemName" class="form-control" style="width: 90%" placeholder="eg: Dermatix" required>
+                        <label>Product  Detail</label>
+                        <input type="text" name="itemName" class="form-control" style="width: 90%" placeholder="eg: for itchy/oily/sensitive" required>
                       </div>
 
                   </div>
